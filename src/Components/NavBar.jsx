@@ -12,6 +12,9 @@ function NavBar() {
         <li className="navbar-item">
           <Link to="/posts">All Posts</Link>
         </li>
+        <li className="navbar-item">
+          <Link to="/register">Register</Link>
+        </li>
       </ul>
     </nav>
   );
