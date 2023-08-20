@@ -7,6 +7,13 @@ function Form({ BASE_URL }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
+
+  const handleRegistrationSuccess = token => {
+    setSuccessMessage('Registration successful! You are now logged in.');
+    // Optionally, save the token to sessionStorage for automatic login
+    sessionStorage.setItem('authToken', token);
+  };
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -17,7 +24,7 @@ function Form({ BASE_URL }) {
     }
 
     try {
-      const response = await fetch(`${BASE_URL}/register`, {
+      const response = await fetch(`${BASE_URL}/users/register`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -30,12 +37,13 @@ function Form({ BASE_URL }) {
         }),
       });
 
-      if (!response.ok) {
-        throw new Error('Registration failed');
-      }
+      const data = await response.json();
 
-      // Registration successful
-      console.log('Registration successful');
+      if (response.ok) {
+        handleRegistrationSuccess(data.data.token);
+      } else {
+        setErrorMessage('Registration failed');
+      }
     } catch (error) {
       setErrorMessage('An error occurred during registration');
     }
@@ -45,8 +53,9 @@ function Form({ BASE_URL }) {
     <div>
       <h2>Register</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
+      {successMessage && <p className="success-message">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
-        <div>
+      <div>
           <label htmlFor="username">Username</label>
           <input
             type="text"
