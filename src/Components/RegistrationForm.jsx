@@ -53,6 +53,7 @@ function Form({ BASE_URL }) {
             id="username"
             value={username}
             onChange={e => setUsername(e.target.value)}
+            minLength={4} // Set minimum length
             required
           />
         </div>
@@ -63,6 +64,7 @@ function Form({ BASE_URL }) {
             id="password"
             value={password}
             onChange={e => setPassword(e.target.value)}
+            minLength={8} // Set minimum length
             required
           />
         </div>
@@ -73,6 +75,7 @@ function Form({ BASE_URL }) {
             id="confirmPassword"
             value={confirmPassword}
             onChange={e => setConfirmPassword(e.target.value)}
+            minLength={8} // Set minimum length
             required
           />
         </div>
