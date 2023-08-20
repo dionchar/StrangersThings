@@ -6,6 +6,7 @@ import './App.css';
 import NavBar from './Components/NavBar'; 
 import Home from './Components/Home';
 import AllPosts from './Components/AllPosts';
+import Form from './Components/RegistrationForm';
 
 function App() {
   const COHORT_NAME = '2302-ACC-PT-WEB-PT-A';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts BASE_URL={BASE_URL} />} />
+          <Route path="/register" element={<Form BASE_URL={BASE_URL} />} />
         </Routes>
       </div>
     </Router>
