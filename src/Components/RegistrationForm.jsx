@@ -1,19 +1,27 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-function Form({ BASE_URL }) {
+function RegistrationForm({ BASE_URL }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [successMessage, setSuccessMessage] = useState('');
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); // New state for registration success
+  const navigate = useNavigate();
 
   const handleRegistrationSuccess = token => {
-    setSuccessMessage('Registration successful! You are now logged in.');
-    // Optionally, save the token to sessionStorage for automatic login
-    sessionStorage.setItem('authToken', token);
+    setRegistrationSuccess(true); // Set registration success state to true
+    // Reset form input fields
+    setUsername('');
+    setPassword('');
+    setConfirmPassword('');
+
+    // Navigate to the login page
+    navigate('/login');
   };
+
 
   const handleSubmit = async event => {
     event.preventDefault();
@@ -49,13 +57,14 @@ function Form({ BASE_URL }) {
     }
   };
 
+
   return (
     <div>
       <h2>Register</h2>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
-      {successMessage && <p className="success-message">{successMessage}</p>}
-      <form onSubmit={handleSubmit}>
-      <div>
+      {!registrationSuccess ? ( // Render the registration form if not successful
+        <form onSubmit={handleSubmit}>
+        <div>
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -89,9 +98,15 @@ function Form({ BASE_URL }) {
           />
         </div>
         <button type="submit">Register</button>
-      </form>
+        </form>
+      ) : (
+        <div>
+          <p className="success-message">Registration successful! You can now log in.</p>
+          <button onClick={() => navigate('/login')}>Go to Login</button>
+        </div>
+      )}
     </div>
   );
 }
 
-export default Form;
+export default RegistrationForm;

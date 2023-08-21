@@ -1,11 +1,13 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login({ BASE_URL, handleLoginSuccess }) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+  const navigate = useNavigate();
 
   const handleLoginSubmit = async event => {
     event.preventDefault();
@@ -28,6 +30,7 @@ function Login({ BASE_URL, handleLoginSuccess }) {
 
       if (response.ok) {
         handleLoginSuccess(data.data.token);
+        navigate('/posts'); // Navigate to the posts page after successful login
       } else {
         setErrorMessage('Login failed');
       }

@@ -15,6 +15,9 @@ function NavBar() {
         <li className="navbar-item">
           <Link to="/register">Register</Link>
         </li>
+        <li className="navbar-item">
+          <Link to="/login">Login</Link> {/* Add this line */}
+        </li>
       </ul>
     </nav>
   );
