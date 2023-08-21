@@ -8,6 +8,7 @@ import Home from './Components/Home';
 import AllPosts from './Components/AllPosts';
 import RegistrationForm from './Components/RegistrationForm';
 import Login from './Components/Login';
+import { fetchWithHeaders } from './Helpers/api';
 
 function App() {
   const COHORT_NAME = '2302-ACC-PT-WEB-PT-A';

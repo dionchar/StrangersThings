@@ -19,7 +19,7 @@ function RegistrationForm({ BASE_URL }) {
     setConfirmPassword('');
 
     // Navigate to the login page
-    navigate('/login');
+    // navigate('/login');
   };
 
 

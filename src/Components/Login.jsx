@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { fetchWithHeaders } from '../Helpers/api';
 
 function Login({ BASE_URL, handleLoginSuccess }) {
   const [username, setUsername] = useState('');
@@ -13,26 +14,18 @@ function Login({ BASE_URL, handleLoginSuccess }) {
     event.preventDefault();
 
     try {
-      const response = await fetch(`${BASE_URL}/users/login`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const data = await fetchWithHeaders(`${BASE_URL}/users/login`, 'POST', {
+        user: {
+          username,
+          password,
         },
-        body: JSON.stringify({
-          user: {
-            username,
-            password,
-          },
-        }),
       });
 
-      const data = await response.json();
-
-      if (response.ok) {
+      if (data.success) {
         handleLoginSuccess(data.data.token);
-        navigate('/posts'); // Navigate to the posts page after successful login
+        navigate('/posts');
       } else {
-        setErrorMessage('Login failed');
+        setErrorMessage('Incorrect username or password');
       }
     } catch (error) {
       setErrorMessage('An error occurred during login');
