@@ -9,7 +9,7 @@ import CreatePostForm from './CreatePostForm';
 function AllPosts({ BASE_URL, token }) {
   const [posts, setPosts] = useState([]);
 
-  useEffect(() => {
+  const fetchPosts = () => {
     fetch(`${BASE_URL}/posts`)
       .then(response => response.json())
       .then(data => {
@@ -18,6 +18,10 @@ function AllPosts({ BASE_URL, token }) {
       .catch(error => {
         console.error('Error fetching posts:', error);
       });
+  };
+
+  useEffect(() => {
+    fetchPosts();
   }, [BASE_URL]);
 
   return (
