@@ -8,8 +8,13 @@ import CreatePostForm from './CreatePostForm';
 
 function AllPosts({ BASE_URL, token }) {
   const [posts, setPosts] = useState([]);
+  const [errorMessage, setErrorMessage] = useState('');
 
-  const fetchPosts = () => {
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  const fetchPosts = async () => {
     fetch(`${BASE_URL}/posts`)
       .then(response => response.json())
       .then(data => {
@@ -20,16 +25,19 @@ function AllPosts({ BASE_URL, token }) {
       });
   };
 
-  useEffect(() => {
-    fetchPosts();
-  }, [BASE_URL]);
+
 
   return (
     <div>
       <h2>All Posts</h2>
       <ul>
         {posts.map(post => (
-          <li key={post._id}>{post.title}</li>
+          <><li key={post._id}>{post.title}</li><h3 className="post-title">{post.title}</h3>
+          <p className="post-description">{post.description}</p>
+            <p className="post-price">Price: {post.price}</p>
+            <p className="post-location">Location: {post.location}</p>
+            {post.isAuthor && <p>You are the author of this post.</p>}
+          </>
         ))}
       </ul>
       <CreatePostForm BASE_URL={BASE_URL} token={token} fetchPosts={fetchPosts} />
