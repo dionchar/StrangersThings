@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
+import './index.css';
 import NavBar from './Components/NavBar'; 
 import Home from './Components/Home';
 import AllPosts from './Components/AllPosts';
