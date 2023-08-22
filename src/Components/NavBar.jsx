@@ -3,8 +3,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar({ token, handleLogout }) {
-
+function NavBar({ isLoggedIn, logout }) {
   return (
     <nav className="navbar">
       <ul className="navbar-list">
@@ -17,13 +16,13 @@ function NavBar({ token, handleLogout }) {
         <li className="navbar-item">
           <Link to="/register">Register</Link>
         </li>
-        {!token ? ( // Render login link if not logged in
+        {!isLoggedIn ? ( // Render login link if not logged in
           <li className="navbar-item">
             <Link to="/login">Login</Link>
           </li>
         ) : (
           <li className="navbar-item">
-            <button onClick={handleLogout}>Logout</button>
+            <button onClick={logout}>Logout</button>
           </li>
         )}
       </ul>
