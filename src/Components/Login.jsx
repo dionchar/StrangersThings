@@ -57,7 +57,7 @@ function Login({ BASE_URL, handleLoginSuccess }) {
             required
           />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit">Login</button>
       </form>
     </div>
   );
