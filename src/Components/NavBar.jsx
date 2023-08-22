@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function NavBar() {
+function NavBar({ token, handleLogout }) {
+
   return (
     <nav className="navbar">
       <ul className="navbar-list">
@@ -15,9 +17,15 @@ function NavBar() {
         <li className="navbar-item">
           <Link to="/register">Register</Link>
         </li>
-        <li className="navbar-item">
-          <Link to="/login">Login</Link> {/* Add this line */}
-        </li>
+        {!token ? ( // Render login link if not logged in
+          <li className="navbar-item">
+            <Link to="/login">Login</Link>
+          </li>
+        ) : (
+          <li className="navbar-item">
+            <button onClick={handleLogout}>Logout</button>
+          </li>
+        )}
       </ul>
     </nav>
   );
