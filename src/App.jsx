@@ -27,12 +27,13 @@ export default function App() {
 
   const handleLogout = () => {
     setToken('');
+    sessionStorage.removeItem('authToken'); // Also clear the token from sessionStorage
   };
 
   return (
     <Router>
       <div className="app">
-      <NavBar isLoggedIn={isLoggedIn(token)} logOut={() => logOut(setToken)} />
+      <NavBar isLoggedIn={Boolean(token)} logout={handleLogout} />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts BASE_URL={BASE_URL} />} />
