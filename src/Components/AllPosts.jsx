@@ -3,8 +3,10 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from 'react';
+import { fetchWithHeaders } from '../Helpers/api';
+import CreatePostForm from './CreatePostForm';
 
-function AllPosts({ BASE_URL }) {
+function AllPosts({ BASE_URL, token }) {
   const [posts, setPosts] = useState([]);
 
   useEffect(() => {
@@ -26,6 +28,7 @@ function AllPosts({ BASE_URL }) {
           <li key={post._id}>{post.title}</li>
         ))}
       </ul>
+      <CreatePostForm BASE_URL={BASE_URL} token={token} fetchPosts={fetchPosts} />
     </div>
   );
 }
