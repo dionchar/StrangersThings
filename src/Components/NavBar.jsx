@@ -16,7 +16,7 @@ function NavBar({ isLoggedIn, logout }) {
         <li className="navbar-item">
           <Link to="/register">Register</Link>
         </li>
-        {!isLoggedIn ? ( // Render login link if not logged in
+        {!isLoggedIn ? ( 
           <li className="navbar-item">
             <Link to="/login">Login</Link>
           </li>

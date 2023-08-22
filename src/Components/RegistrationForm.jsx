@@ -11,18 +11,18 @@ function RegistrationForm({ BASE_URL }) {
   const [registrationSuccess, setRegistrationSuccess] = useState(false); // New state for registration success
   const navigate = useNavigate();
 
+  // Handle successful registration
   const handleRegistrationSuccess = token => {
-    setRegistrationSuccess(true); // Set registration success state to true
+    // Set registration success state to true
+    setRegistrationSuccess(true); 
     // Reset form input fields
     setUsername('');
     setPassword('');
     setConfirmPassword('');
-
-    // Navigate to the login page
-    // navigate('/login');
+  // Navigate to the login page
   };
 
-
+  // Handle form submission
   const handleSubmit = async event => {
     event.preventDefault();
 
