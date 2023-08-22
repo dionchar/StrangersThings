@@ -126,3 +126,44 @@ body {
 .message-content {
   color: #666;
 }
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem;
+  text-align: center;
+}
+
+/* Home page header */
+.home-header {
+  margin-bottom: 2rem;
+}
+
+/* Home page features section */
+.home-features {
+  display: flex;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+/* Individual feature box */
+.feature {
+  flex: 1;
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  background-color: #f9f9f9;
+}
+
+/* Home page footer */
+.home-footer {
+  margin-top: auto;
+  text-align: center;
+  padding: 1rem 0;
+  background-color: #f9f9f9;
+  border-top: 1px solid #ccc;
+}
