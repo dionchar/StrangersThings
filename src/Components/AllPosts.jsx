@@ -7,13 +7,17 @@ import { fetchWithHeaders } from "../Helpers/api";
 import CreatePostForm from "./CreatePostForm";
 
 function AllPosts({ BASE_URL, token }) {
+  // State to store fetched posts
   const [posts, setPosts] = useState([]);
+  // State to handle error messages
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Fetch posts when the component mounts
   useEffect(() => {
     fetchPosts();
   }, []);
 
+  // Function to fetch posts from the API
   const fetchPosts = async () => {
     fetch(`${BASE_URL}/posts`)
       .then((response) => response.json())
