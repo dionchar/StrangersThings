@@ -12,6 +12,8 @@ function CreatePostForm({ BASE_URL, token, fetchPosts }) {
     const [location, setLocation] = useState('');
     const [willDeliver, setWillDeliver] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
+
+    
   
     const handleSubmit = async event => {
       event.preventDefault();

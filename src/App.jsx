@@ -12,6 +12,7 @@ import AllPosts from './Components/AllPosts';
 import RegistrationForm from './Components/RegistrationForm';
 import Login from './Components/Login';
 import { logIn, logOut, isLoggedIn } from './Helpers/authHelpers';
+import CreatePostForm from './Components/CreatePostForm';
 import { fetchWithHeaders } from './Helpers/api';
 
 export default function App() {
