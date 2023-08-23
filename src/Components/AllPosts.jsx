@@ -15,6 +15,7 @@ function AllPosts({ BASE_URL, token }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [messages, setMessages] = useState([]);
   const [userData, setUserData] = useState(null);
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch posts when the component mounts
   useEffect(() => {
@@ -83,13 +84,26 @@ setPosts(posts => posts.filter(post => post._id !== postId))
     }
   };
 
+  const postMatches = (post, text) => {
+    // Return true if any of the fields you want to check against include the text
+    // For example, check if title or description includes the text
+    return post.title.toLowerCase().includes(text) || post.description.toLowerCase().includes(text);
+  };
 
+  const filteredPosts = posts.filter((post) => postMatches(post, searchTerm.toLowerCase()));
+  const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
   return (
     <div>
       <h2>All Posts</h2>
+      <input
+        type="text"
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        placeholder="Search"
+      />
       <ul>
-        {posts.map((post) => (
+      {postsToDisplay.map((post) => (
           <div key={post._id}>
             <h3 className="post-title">{post.title}</h3>
             <p className="post-description">{post.description}</p>
