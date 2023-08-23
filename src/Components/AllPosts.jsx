@@ -95,55 +95,51 @@ setPosts(posts => posts.filter(post => post._id !== postId))
 
   return (
     <div>
+      <header className="allPost-header">
+      
+        <div className="allPost-logo">
+          <img src="allPost-logo.png" alt="allPost Logo" />
+        </div>
+        <div className="search-bar">
+          <input
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search for items, brands, and more"
+          />
+          <button className="search-button">Search</button>
+        </div>
+        
+       
+      </header>
       <h2>All Posts</h2>
-      <input
-        type="text"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-        placeholder="Search"
-      />
-      <ul>
-      {postsToDisplay.map((post) => (
-          <div key={post._id}>
+      {/* ... */}
+      <ul className="post-container">
+        
+        {postsToDisplay.map((post) => (
+          <div key={post._id} className="post-card">
             <h3 className="post-title">{post.title}</h3>
             <p className="post-description">{post.description}</p>
             <p className="post-price">Price: {post.price}</p>
             <p className="post-location">Location: {post.location}</p>
-            {post?.author?._id === user?._id && (
-              <>
-                <p>You are the author of this post.</p>
-                <button onClick={() => handleDeletePost(post._id)}>Delete Post</button>
-              </>
-            )}
-            {token && user._id !== post.author._id && (
-              <form onSubmit={(event) => handleMessageSubmit(event, post._id)}>
-                <input
-                  type="text"
-                  value={messageInput}
-                  onChange={(e) => setMessageInput(e.target.value)}
-                  placeholder="Enter your message"
-                />
-                <button type="submit">Send Message</button>
-              </form>
-            )}
+            {/* ... */}
           </div>
         ))}
       </ul>
       <CreatePostForm BASE_URL={BASE_URL} token={token} fetchPosts={fetchPosts} />
       <div>
-  <h2>Your Messages</h2>
-  <ul>
-    {messages.map((message) => (
-      <div key={message._id}>
-        <p>From: {message.fromUser.username}</p>
-        <p>Content: {message.content}</p>
-        
+        <h2>Your Messages</h2>
+        <ul>
+          {messages.map((message) => (
+            <div key={message._id} className="message-card">
+              <p>From: {message.fromUser.username}</p>
+              <p>Content: {message.content}</p>
+              {/* ... */}
+            </div>
+          ))}
+        </ul>
       </div>
-    ))}
-  </ul>
-</div>
     </div>
   );
-}
-
+          }
 export default AllPosts;
