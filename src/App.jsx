@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './App.css';
 import './index.css';
@@ -15,6 +15,7 @@ import { logIn, logOut, isLoggedIn } from './Helpers/authHelpers';
 import CreatePostForm from './Components/CreatePostForm';
 import { fetchWithHeaders } from './Helpers/api';
 
+
 export default function App() {
   const COHORT_NAME = '2302-ACC-PT-WEB-PT-A';
   const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
@@ -22,6 +23,17 @@ export default function App() {
   const storedToken = localStorage.getItem('authToken');
   // State to store the authentication token
   const [token, setToken] = useState(storedToken || ''); // Set initial value to storedToken
+
+  useEffect(() => {
+    // Check if there's a token in sessionStorage
+    const authToken = sessionStorage.getItem('authToken');
+    if (authToken) {
+      // Set the token in state
+      setToken(authToken);
+    }
+  }, []);
+
+  
 
   // Function to handle successful login and set token
   const handleLoginSuccess = (newToken) => {

@@ -3,7 +3,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
-import { deletePost, postMessage } from "../Helpers/api"; // Assuming you have a postMessage function in your Helpers/api.js
+import { fetchWithHeaders, deletePost, postMessage } from "../Helpers/api"; 
 import CreatePostForm from "./CreatePostForm";
 
 function AllPosts({ BASE_URL, token }) {
@@ -13,12 +13,16 @@ function AllPosts({ BASE_URL, token }) {
   const [messageInput, setMessageInput] = useState("");
   // State to handle error messages
   const [errorMessage, setErrorMessage] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [userData, setUserData] = useState(null);
 
   // Fetch posts when the component mounts
   useEffect(() => {
     fetchUser();
     fetchPosts();
   }, []);
+
+  
 
   // Function to fetch posts from the API
   const fetchPosts = async () => {
@@ -45,6 +49,9 @@ function AllPosts({ BASE_URL, token }) {
       console.log(result);
 
       setUser (result.data)
+
+      setMessages(result.data.messages);
+
     } catch (err) {
       console.error(err);
     }
@@ -76,7 +83,7 @@ setPosts(posts => posts.filter(post => post._id !== postId))
     }
   };
 
-  
+
 
   return (
     <div>
@@ -109,6 +116,18 @@ setPosts(posts => posts.filter(post => post._id !== postId))
         ))}
       </ul>
       <CreatePostForm BASE_URL={BASE_URL} token={token} fetchPosts={fetchPosts} />
+      <div>
+  <h2>Your Messages</h2>
+  <ul>
+    {messages.map((message) => (
+      <div key={message._id}>
+        <p>From: {message.fromUser.username}</p>
+        <p>Content: {message.content}</p>
+        
+      </div>
+    ))}
+  </ul>
+</div>
     </div>
   );
 }
