@@ -18,16 +18,27 @@ import { fetchWithHeaders } from './Helpers/api';
 export default function App() {
   const COHORT_NAME = '2302-ACC-PT-WEB-PT-A';
   const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
+  // Check if there is a token in localStorage
+  const storedToken = localStorage.getItem('authToken');
   // State to store the authentication token
-  const [token, setToken] = useState('');
+  const [token, setToken] = useState(storedToken || ''); // Set initial value to storedToken
+
   // Function to handle successful login and set token
-  const handleLoginSuccess = newToken => {
+  const handleLoginSuccess = (newToken) => {
+    // Store the token in localStorage
+    localStorage.setItem('authToken', newToken);
+
+    // Set the token in state
     setToken(newToken);
   };
+
   // Function to handle logout and clear token
   const handleLogout = () => {
+    // Remove the token from localStorage
+    localStorage.removeItem('authToken');
+
+    // Clear the token from state
     setToken('');
-    sessionStorage.removeItem('authToken'); 
   };
 
   return (
