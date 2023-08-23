@@ -38,7 +38,7 @@ export default function App() {
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts BASE_URL={BASE_URL} token={token} />} />
           <Route path="/register" element={<RegistrationForm BASE_URL={BASE_URL} />} />
-          <Route path="/login" element={<Login BASE_URL={BASE_URL} handleLoginSuccess={(newToken) => logIn(newToken, setToken)} />} />
+          <Route path="/login" element={<Login BASE_URL={BASE_URL} handleLoginSuccess={handleLoginSuccess} />} />
         </Routes>
       </div>
     </Router>
