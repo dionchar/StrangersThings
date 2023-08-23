@@ -122,7 +122,23 @@ setPosts(posts => posts.filter(post => post._id !== postId))
             <p className="post-description">{post.description}</p>
             <p className="post-price">Price: {post.price}</p>
             <p className="post-location">Location: {post.location}</p>
-            {/* ... */}
+            {post?.author?._id === user?._id && (
+              <>
+                <p>You are the author of this post.</p>
+                <button onClick={() => handleDeletePost(post._id)}>Delete Post</button>
+              </>
+            )}
+            {token && user._id !== post.author._id && (
+              <form onSubmit={(event) => handleMessageSubmit(event, post._id)}>
+                <input
+                  type="text"
+                  value={messageInput}
+                  onChange={(e) => setMessageInput(e.target.value)}
+                  placeholder="Enter your message"
+                />
+                <button type="submit">Send Message</button>
+              </form>
+            )}
           </div>
         ))}
       </ul>
