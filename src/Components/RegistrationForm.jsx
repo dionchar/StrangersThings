@@ -8,29 +8,24 @@ function RegistrationForm({ BASE_URL }) {
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [registrationSuccess, setRegistrationSuccess] = useState(false); // New state for registration success
+  const [registrationSuccess, setRegistrationSuccess] = useState(false); 
   const navigate = useNavigate();
 
-  // Handle successful registration
+  // Function to Handle successful registration
   const handleRegistrationSuccess = token => {
-    // Set registration success state to true
-    setRegistrationSuccess(true); 
-    // Reset form input fields
+    setRegistrationSuccess(true); // Set registration success state to true
     setUsername('');
     setPassword('');
     setConfirmPassword('');
-  // Navigate to the login page
   };
 
-  // Handle form submission
+  // Function to handle form submission
   const handleSubmit = async event => {
     event.preventDefault();
-
     if (password !== confirmPassword) {
       setErrorMessage("Passwords don't match");
       return;
     }
-
     try {
       const response = await fetch(`${BASE_URL}/users/register`, {
         method: 'POST',
@@ -46,7 +41,6 @@ function RegistrationForm({ BASE_URL }) {
       });
 
       const data = await response.json();
-
       if (response.ok) {
         handleRegistrationSuccess(data.data.token);
       } else {
@@ -56,7 +50,6 @@ function RegistrationForm({ BASE_URL }) {
       setErrorMessage('An error occurred during registration');
     }
   };
-
 
   return (
     <div>
