@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 function RegistrationForm({ BASE_URL }) {
   const [username, setUsername] = useState('');
@@ -53,11 +53,16 @@ function RegistrationForm({ BASE_URL }) {
 
   return (
     <div>
-      <h2>Register</h2>
+      <div className="registration-form-container">
+      <h2>Register to be a part of the Strangers Things community!</h2>
+      <p>Sell your stuff!</p>
+      <p>Send messages!</p>
+      <p>All the cool kids are doing it!!</p>
       {errorMessage && <p className="error-message">{errorMessage}</p>}
       {!registrationSuccess ? ( // Render the registration form if not successful
-        <form onSubmit={handleSubmit}>
+         <form className="registration-form" onSubmit={handleSubmit}>
         <div>
+        <div className="form-group">
           <label htmlFor="username">Username</label>
           <input
             type="text"
@@ -69,6 +74,7 @@ function RegistrationForm({ BASE_URL }) {
           />
         </div>
         <div>
+        <div className="form-group">
           <label htmlFor="password">Password</label>
           <input
             type="password"
@@ -90,7 +96,10 @@ function RegistrationForm({ BASE_URL }) {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <button type="submit" className="submit-button">Register</button>
+        </div>
+        </div>
+        <p>Already have an account? <Link to="/login">Login</Link></p>
         </form>
       ) : (
         <div>
@@ -98,6 +107,7 @@ function RegistrationForm({ BASE_URL }) {
           <button onClick={() => navigate('/login')}>Go to Login</button>
         </div>
       )}
+    </div>
     </div>
   );
 }
