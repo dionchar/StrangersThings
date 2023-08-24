@@ -2,6 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
+import overlayImage from '../assets/Logo7.png';
 
 function Home() {
   return (
@@ -24,6 +25,9 @@ function Home() {
           <p>Communicate with buyers and sellers through our messaging system.</p>
         </div>
       </section>
+<div className= "large-logo">
+<img src={overlayImage} alt="Logo" />
+</div>
       <footer className="home-footer">
         <p>&copy; 2023 Strangers' Things. All rights reserved.</p>
       </footer>

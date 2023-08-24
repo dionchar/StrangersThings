@@ -292,3 +292,8 @@ img {
 align-items: flex-end;
 padding: 10px;
 }
+
+.large-logo {
+  width: 15%;
+  padding: 20px;
+}
