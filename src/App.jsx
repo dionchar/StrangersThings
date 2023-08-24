@@ -1,56 +1,46 @@
 /* eslint-disable react/jsx-no-undef */
 /* eslint-disable no-unused-vars */
 
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import './App.css';
-import './index.css';
-import NavBar from './Components/NavBar'; 
-import Home from './Components/Home';
-import AllPosts from './Components/AllPosts';
-import RegistrationForm from './Components/RegistrationForm';
-import Login from './Components/Login';
-import { logIn, logOut, isLoggedIn } from './Helpers/authHelpers';
-import CreatePostForm from './Components/CreatePostForm';
-import { fetchWithHeaders } from './Helpers/api';
-
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "./App.css";
+import "./index.css";
+import NavBar from "./Components/NavBar";
+import Home from "./Components/Home";
+import AllPosts from "./Components/AllPosts";
+import RegistrationForm from "./Components/RegistrationForm";
+import Login from "./Components/Login";
+import { logIn, logOut, isLoggedIn } from "./Helpers/authHelpers";
+import CreatePostForm from "./Components/CreatePostForm";
+import { fetchWithHeaders } from "./Helpers/api";
 
 export default function App() {
-  const COHORT_NAME = '2302-ACC-PT-WEB-PT-A';
+  const COHORT_NAME = "2302-ACC-PT-WEB-PT-A";
   const BASE_URL = `https://strangers-things.herokuapp.com/api/${COHORT_NAME}`;
-  // Check if there is a token in localStorage
-  const storedToken = localStorage.getItem('authToken');
-  // State to store the authentication token
-  const [token, setToken] = useState(storedToken || ''); // Set initial value to storedToken
+  const storedToken = localStorage.getItem("authToken"); // Check if there is a token in localStorage
+  const [token, setToken] = useState(storedToken || ""); // Set initial value to storedToken
 
+  // State to store the authentication token
   useEffect(() => {
-    // Check if there's a token in sessionStorage
-    const authToken = sessionStorage.getItem('authToken');
+    const authToken = sessionStorage.getItem("authToken"); // Check if there's a token in sessionStorage
     if (authToken) {
-      // Set the token in state
-      setToken(authToken);
+      setToken(authToken); // Set the token in state
     }
   }, []);
 
-  
-
   // Function to handle successful login and set token
   const handleLoginSuccess = (newToken) => {
-    // Store the token in localStorage
-    localStorage.setItem('authToken', newToken);
-
-    // Set the token in state
-    setToken(newToken);
+    localStorage.setItem("authToken", newToken); // Store the token in localStorage
+    setToken(newToken); // Set the token in state
   };
 
   // Function to handle logout and clear token
   const handleLogout = () => {
-    // Remove the token from localStorage
-    localStorage.removeItem('authToken');
-
-    // Clear the token from state
-    setToken('');
+    localStorage.removeItem("authToken"); // Remove the token from localStorage
+    setToken("");  // Clear the token from state
+    // Reload the page to trigger re-render
+    window.location.reload();
   };
 
   return (
@@ -67,8 +57,3 @@ export default function App() {
     </Router>
   );
 }
-
-
-
-
-
