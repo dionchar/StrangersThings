@@ -6,7 +6,6 @@ import { fetchWithHeaders } from '../Helpers/api';
 import { Link } from 'react-router-dom';
 
 function CreatePostForm({ BASE_URL, token, fetchPosts }) {
-    // State to manage form input fields
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [price, setPrice] = useState('');
@@ -17,15 +16,12 @@ function CreatePostForm({ BASE_URL, token, fetchPosts }) {
     // Function to handle form submission
     const handleSubmit = async event => {
       event.preventDefault();
-  
-      // Check if the user is logged in
-      if (!token) {
+      if (!token) { // Check if the user is logged in
         setErrorMessage('You must be logged in to create a new post');
         return;
       }
-  
-      // Construct the data for the POST request
-      const postData = {
+
+      const postData = { // Construct the data for the POST request
         post: {
           title,
           description,
@@ -36,24 +32,20 @@ function CreatePostForm({ BASE_URL, token, fetchPosts }) {
       };
   
       try {
-        // Send the POST request to create a new post
-        const data = await fetchWithHeaders(
+        const data = await fetchWithHeaders( // Send the POST request to create a new post
           `${BASE_URL}/posts`,
           'POST',
           postData,
           token
         );
 
-        if (data.success) {
-            // Clear form input fields
+        if (data.success) { // Clear form input fields
             setTitle('');
             setDescription('');
             setPrice('');
             setLocation('');
             setWillDeliver(false);
-    
-            // Fetch updated posts
-            fetchPosts();
+            fetchPosts(); // Fetch updated posts
           } else {
             setErrorMessage('Failed to create post');
           }
