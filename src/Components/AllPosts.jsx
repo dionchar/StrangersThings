@@ -43,6 +43,7 @@ function AllPosts({ BASE_URL, token }) {
           Authorization: `Bearer ${token}`,
         },
       });
+
       const result = await response.json();
       console.log(result);
       setUser(result.data);
@@ -57,6 +58,7 @@ function AllPosts({ BASE_URL, token }) {
     const response = await deletePost(token, postId);
     setPosts((posts) => posts.filter((post) => post._id !== postId));
   };
+
   const handleMessageSubmit = async (event, postId) => {
     event.preventDefault();
     try {
@@ -101,7 +103,6 @@ function AllPosts({ BASE_URL, token }) {
         </div>
       </header>
       <h2>All Posts</h2>
-      {/* ... */}
       <ul className="post-container">
         {postsToDisplay.map((post) => (
           <div key={post._id} className="post-card">
