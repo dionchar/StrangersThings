@@ -5,21 +5,16 @@ import { useNavigate } from "react-router-dom";
 import { fetchWithHeaders } from "../Helpers/api";
 
 function Login({ BASE_URL, handleLoginSuccess }) {
-  // State to store username and password inputs
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  // State to handle error messages
-  const [errorMessage, setErrorMessage] = useState("");
-  // Hook to navigate to different routes
-  const navigate = useNavigate();
+  const [username, setUsername] = useState("");  // State to store username 
+  const [password, setPassword] = useState(""); // State to store password inputs
+  const [errorMessage, setErrorMessage] = useState(""); // State to handle error messages
+  const navigate = useNavigate(); // Hook to navigate to different routes
 
   // Function to handle login form submission
   const handleLoginSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      // Make a login request with provided credentials
-      const data = await fetchWithHeaders(`${BASE_URL}/users/login`, "POST", {
+      const data = await fetchWithHeaders(`${BASE_URL}/users/login`, "POST", { // Make a login request with provided credentials
         user: {
           username,
           password,
@@ -27,20 +22,14 @@ function Login({ BASE_URL, handleLoginSuccess }) {
       });
 
       if (data.success) {
-        // Call the handleLoginSuccess function to set the token
-        handleLoginSuccess(data.data.token);
-        // Store the token in localStorage
-        localStorage.setItem("authToken", data.data.token);
-
-        // Navigate to the posts page
-        navigate("/posts");
+        handleLoginSuccess(data.data.token); // Call the handleLoginSuccess function to set the token
+        localStorage.setItem("authToken", data.data.token); // Store the token in localStorage
+        navigate("/posts"); // Navigate to the posts page
       } else {
-        // Display error message for incorrect credentials
-        setErrorMessage("Incorrect username or password");
+        setErrorMessage("Incorrect username or password"); // Display error message for incorrect credentials
       }
     } catch (error) {
-      // Display error message for any other login errors
-      setErrorMessage("An error occurred during login");
+      setErrorMessage("An error occurred during login"); // Display error message for any other login errors
     }
   };
 
