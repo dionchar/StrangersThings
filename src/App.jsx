@@ -47,6 +47,7 @@ export default function App() {
     <Router>
       <div className="app">
       <NavBar isLoggedIn={Boolean(token)} logout={handleLogout} />
+      
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts" element={<AllPosts BASE_URL={BASE_URL} token={token} />} />

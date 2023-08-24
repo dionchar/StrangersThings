@@ -5,6 +5,7 @@
 import React, { useState, useEffect } from "react";
 import { fetchWithHeaders, deletePost, postMessage } from "../Helpers/api";
 import CreatePostForm from "./CreatePostForm";
+import overlayImage from '../assets/Logo6.png';
 
 function AllPosts({ BASE_URL, token }) {
   // State to store fetched posts
@@ -87,21 +88,19 @@ function AllPosts({ BASE_URL, token }) {
   const postsToDisplay = searchTerm.length ? filteredPosts : posts;
 
   return (
-    <div>
-      <header className="allPost-header">
-        <div className="allPost-logo">
-          <img src="allPost-logo.png" alt="allPost Logo" />
-        </div>
-        <div className="search-bar">
-          <input
-            type="text"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for items, brands, and more"
-          />
-          <button className="search-button">Search</button>
-        </div>
-      </header>
+    <div className="all-posts-container">
+    {/* <img src={overlayImage} alt="Overlay" className="overlay-image" /> */}
+    <header className="allPost-header">
+      <div className="search-bar">
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+          placeholder="Search for items, brands, and more"
+        />
+        <button className="search-button">Search</button>
+      </div>
+    </header>
       <h2>All Posts</h2>
       <ul className="post-container">
         {postsToDisplay.map((post) => (
@@ -150,6 +149,7 @@ function AllPosts({ BASE_URL, token }) {
         </ul>
       </div>
     </div>
+    
   );
 }
 export default AllPosts;

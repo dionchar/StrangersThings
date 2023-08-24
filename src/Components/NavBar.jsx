@@ -2,11 +2,19 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
 import { Link } from 'react-router-dom';
+import overlayImage from '../assets/Logo7.png';
 
 function NavBar({ isLoggedIn, logout }) {
   return (
     <nav className="navbar">
+      {/* <div className="navbar-logo">
+        <img src={overlayImage} alt="Logo" />
+      </div> */}
       <ul className="navbar-list">
+      <div className="navbar-logo">
+        <img src={overlayImage} alt="Logo" />
+      </div>
+      <div className= "navbar-item-container">
         <li className="navbar-item">
           <Link to="/">Home</Link>
         </li>
@@ -24,7 +32,9 @@ function NavBar({ isLoggedIn, logout }) {
           <li className="navbar-item">
             <button onClick={logout}>Logout</button>
           </li>
+          
         )}
+        </div>
       </ul>
     </nav>
   );
