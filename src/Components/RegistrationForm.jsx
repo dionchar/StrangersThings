@@ -52,7 +52,6 @@ function RegistrationForm({ BASE_URL }) {
   };
 
   return (
-    <div>
       <div className="registration-form-container">
       <h2>Register to be a part of the Strangers Things community!</h2>
       <p>Sell your stuff!</p>
@@ -107,7 +106,6 @@ function RegistrationForm({ BASE_URL }) {
           <button onClick={() => navigate('/login')}>Go to Login</button>
         </div>
       )}
-    </div>
     </div>
   );
 }
