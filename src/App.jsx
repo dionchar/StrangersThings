@@ -39,6 +39,8 @@ export default function App() {
   const handleLogout = () => {
     localStorage.removeItem("authToken"); // Remove the token from localStorage
     setToken("");  // Clear the token from state
+       // Reload the page to trigger re-render
+    // window.location.reload();
   };
 
   return (
