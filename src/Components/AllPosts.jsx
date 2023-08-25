@@ -89,7 +89,6 @@ function AllPosts({ BASE_URL, token }) {
 
   return (
     <div className="all-posts-container">
-    {/* <img src={overlayImage} alt="Overlay" className="overlay-image" /> */}
     <header className="allPost-header">
       <div className="search-bar">
         <input
@@ -101,7 +100,7 @@ function AllPosts({ BASE_URL, token }) {
         <button className="search-button">Search</button>
       </div>
     </header>
-      <h2>All Posts</h2>
+      <h2 className="things">Check out all these things!</h2>
       <ul className="post-container">
         {postsToDisplay.map((post) => (
           <div key={post._id} className="post-card">
@@ -112,7 +111,7 @@ function AllPosts({ BASE_URL, token }) {
             {post?.author?._id === user?._id && (
               <>
                 <p>You are the author of this post.</p>
-                <button onClick={() => handleDeletePost(post._id)}>
+                <button className="delete-button" onClick={() => handleDeletePost(post._id)}>
                   Delete Post
                 </button>
               </>
@@ -125,7 +124,7 @@ function AllPosts({ BASE_URL, token }) {
                   onChange={(e) => setMessageInput(e.target.value)}
                   placeholder="Enter your message"
                 />
-                <button type="submit">Send Message</button>
+                <button className="send-message" type="submit">Send Message</button>
               </form>
             )}
           </div>
@@ -141,8 +140,8 @@ function AllPosts({ BASE_URL, token }) {
         <ul>
           {messages.map((message) => (
             <div key={message._id} className="message-card">
-              <p>From: {message.fromUser.username}</p>
-              <p>Content: {message.content}</p>
+              <p className="message-author">From: {message.fromUser.username}</p>
+              <p className="message-content">Content: {message.content}</p>
               {/* ... */}
             </div>
           ))}

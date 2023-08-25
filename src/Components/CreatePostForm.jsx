@@ -65,7 +65,7 @@ function CreatePostForm({ BASE_URL, token, fetchPosts }) {
         </div>
       )}
       <h2>Create a New Post</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="create-post-form" onSubmit={handleSubmit}>
         <div>
           <label htmlFor="title">Title</label>
           <input

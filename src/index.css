@@ -344,3 +344,89 @@ input {
   margin-top: 10px;
   text-align: center;
 }
+
+.things {
+text-align: center;
+
+}
+
+.create-post-form {
+  max-width: 400px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.create-post-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+.create-post-form input[type="text"],
+.create-post-form textarea {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.create-post-form button[type="submit"] {
+  background-color: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.create-post-form button[type="submit"]:hover {
+  background-color: #0056b3;
+}
+
+.message-card {
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin-bottom: 10px;
+  background-color: #f8f8f8;
+  border-radius: 5px;
+}
+
+.message-card p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.message-card .message-author {
+  font-weight: bold;
+}
+
+.message-card .message-content {
+  margin-top: 8px;
+  font-style: italic;
+  color: #555;
+}
+
+ul {
+  padding-inline-start: 0px;
+
+}
+
+.send-message,
+.delete-button {
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  padding: 10px 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.send-message:hover,
+.delete-button:hover {
+  background-color: #0056b3;
+
+}
