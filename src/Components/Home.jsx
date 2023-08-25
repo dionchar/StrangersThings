@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className="home-container">
       <header className="home-header">
-        <h1>Welcome to Strangers' Things</h1>
+        <h1>Welcome to Strangers Things</h1>
         <p>Your go-to platform for buying and selling unique items!</p>
       </header>
       <section className="home-features">
