@@ -17,7 +17,7 @@ function AllPosts({ BASE_URL, token }) {
   const [userData, setUserData] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
 
-  // Fetch posts when the component mounts
+  // Fetch posts, users, and set message when the component mounts
   useEffect(() => {
     fetchUser();
     fetchPosts();
