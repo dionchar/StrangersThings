@@ -1,43 +1,43 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
 import React from 'react';
-import { Link } from 'react-router-dom';
-import overlayImage from '../assets/Logo7.png';
+import { Link, useLocation } from 'react-router-dom';
 
-function NavBar({ isLoggedIn, logout }) {
+
+function Navbar() {
+  const location = useLocation();
+  const isLoggedIn = false; // Replace with your login state logic
+
+  const handleClick = (event) => {
+    if (event.currentTarget.href === window.location.href) {
+      event.preventDefault();
+    }
+  };
+
   return (
-    <nav className="navbar">
-      {/* <div className="navbar-logo">
-        <img src={overlayImage} alt="Logo" />
-      </div> */}
-      <ul className="navbar-list">
-      <div className="navbar-logo">
-        <img src={overlayImage} alt="Logo" />
-      </div>
-      <div className= "navbar-item-container">
+    <div className="navbar-item-container">
+      <li className="navbar-item">
+        <Link to="/" onClick={handleClick}>
+          Home
+        </Link>
+      </li>
+      <li className="navbar-item">
+        <Link to="/posts" onClick={handleClick}>
+          All Posts
+        </Link>
+      </li>
+      <li className="navbar-item">
+        <Link to="/register" onClick={handleClick}>
+          Register
+        </Link>
+      </li>
+      {!isLoggedIn && (
         <li className="navbar-item">
-          <Link to="/">Home</Link>
+          <Link to="/login" onClick={handleClick}>
+            Login
+          </Link>
         </li>
-        <li className="navbar-item">
-          <Link to="/posts">All Posts</Link>
-        </li>
-        <li className="navbar-item">
-          <Link to="/register">Register</Link>
-        </li>
-        {!isLoggedIn ? ( 
-          <li className="navbar-item">
-            <Link to="/login">Login</Link>
-          </li>
-        ) : (
-          <li className="navbar-item">
-            <button onClick={logout}>Logout</button>
-          </li>
-          
-        )}
-        </div>
-      </ul>
-    </nav>
+      )}
+    </div>
   );
 }
 
-export default NavBar;
+export default Navbar;

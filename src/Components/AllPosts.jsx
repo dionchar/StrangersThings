@@ -9,7 +9,6 @@
 import React, { useState, useEffect } from "react";
 import { fetchWithHeaders, deletePost, postMessage } from "../Helpers/api";
 import CreatePostForm from "./CreatePostForm";
-import overlayImage from "../assets/Logo6.png";
 
 function AllPosts({ BASE_URL, token }) {
   // State to store fetched posts
@@ -104,7 +103,7 @@ function AllPosts({ BASE_URL, token }) {
             type="text"
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search for items, brands, and more"
+            placeholder="Search to your hearts desire."
           />
           <button className="search-button">Search</button>
         </div>

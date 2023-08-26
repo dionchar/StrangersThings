@@ -3,8 +3,20 @@
   margin: 0 auto;
   padding: 2rem;
   align-content: center;
-  
 }
+  
+.background-image-container {
+  background-image: url("images/wavy gif.gif");
+  background-size: cover;
+  background-position: center;
+  position: fixed; /* Use fixed positioning */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1; /* Place it behind the content */
+}
+
 
 body {
   font-family: Arial, sans-serif;
@@ -19,8 +31,8 @@ body {
 }
 
 .navbar {
-  background-color: #274379;
-  color: #fff;
+  background-color: #040a16;
+  color: #f00808;
   padding: 1px;
 }
 
@@ -41,7 +53,7 @@ body {
 }
 
 .navbar-item a:hover {
-  background-color: #d332e2;
+  background-color: #11cc5c;
 }
 
 .container {
@@ -243,15 +255,18 @@ body {
   border: none;
   border-radius: 4px;
   font-size: 16px;
+  background-color: #f3f6fa;
 }
 
 .search-button {
-  background-color: #eb8a0e;
+  background-color: #f709b4;
   border: none;
   border-radius: 4px;
-  color: white;
+  color: rgb(20, 6, 6);
   padding: 10px 20px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 100%;
 }
 
 .user-actions {
@@ -288,10 +303,17 @@ img {
   width: 80%;
 }
 
-.navbar-item-container {
+.navbar-item-container  {
   display: flex;
 align-items: flex-end;
 padding: 10px;
+}
+
+.navbar-item-container a {
+  color: #040202;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 150%;
 }
 
 .large-logo {
@@ -329,7 +351,7 @@ input {
 }
 
 .submit-button {
-  background-color: #007bff;
+  background-color: #76b3f4;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -375,12 +397,14 @@ text-align: center;
 }
 
 .create-post-form button[type="submit"] {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #f709b4;
+  color: #0d0303;
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 100%;
 }
 
 .create-post-form button[type="submit"]:hover {
@@ -430,4 +454,23 @@ ul {
 .delete-button:hover {
   background-color: #0056b3;
 
+}
+
+@keyframes wave {
+  0%, 100% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(-5px);
+  }
+  50% {
+    transform: translateX(5px);
+  }
+  75% {
+    transform: translateX(-3px);
+  }
+}
+
+.things {
+  animation: wave 1s infinite;
 }
